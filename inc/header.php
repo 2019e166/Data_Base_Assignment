@@ -17,7 +17,7 @@ require_once 'inc/connection.php';
 		<u1>
 			<li><a href="index.php">Home</a></li>
 			<li><a href="login.php">Login</a></li>
-			<li><a href="register.php">Register</a></li>
+			<li><a href="register.html">Register</a></li>
 
 </header>
 </html>
