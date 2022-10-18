@@ -7,8 +7,8 @@ require_once 'inc/header.php';
 <p> No Account <a href="registerHome.php">Register Now!</a></p>
 <p> Return to Home Page <a href="index.php">Home Page</a></p>
 <form action="" method="post">
-	<input type="text" name="Username" placeholder="UserName">
-	<input type="password" name="password" placeholder="Password">
+	<input type="text" name="Username" placeholder="UserName" required="true">
+	<input type="password" name="password" placeholder="Password" required="true">
 	<button type="submit">Login</button>
 </form>
 </div>
