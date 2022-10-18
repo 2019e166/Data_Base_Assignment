@@ -2,7 +2,7 @@
 	<footer>
 		<p>
 			<div class="panel-footer text-right">
-				<small>&copy; W@H@W</small> <!--Copy write option -->
+				<medium>&copy; fitshoes</medium> <!--Copy write option -->
 			</div>
 		</p>
 	</footer>
