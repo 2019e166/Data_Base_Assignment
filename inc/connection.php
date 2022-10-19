@@ -1,4 +1,4 @@
-<?php 
+<? php 
 
 	$dbhost = 'localhost';
 	$dbuser = 'root';
@@ -14,7 +14,7 @@
 	}
 	else
 	{
-		echo "Connection successful.";
+		//echo "Connection successful.";
 	}
 
 ?>

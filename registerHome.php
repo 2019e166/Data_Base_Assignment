@@ -11,6 +11,6 @@ require_once 'inc/header.php';
 	<button type="submit" formaction="registerSellers.php">Register as seller.</button>
 </form>
 </div>
-<?php
+<? php
 require_once 'inc/footer.php';
 ?>
