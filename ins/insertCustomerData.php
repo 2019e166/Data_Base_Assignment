@@ -24,25 +24,20 @@
 		$username = mysqli_real_escape_string($connection,$_POST['Username']);
 		$password = mysqli_real_escape_string($connection,$_POST['Password']);
 		$isdelete = 0;
+		$hashedPassword = sha1($password);
 
-		$sql = "INSERT INTO customerDetails(CustomerName,Mobile,Address,Email,Username,Password,IsDeleted) VALUES ('{$customername}','{$mobile}','{$address}','{$email}','{$username}','{$password}',{$isdelete})";
+		$sql = "INSERT INTO customerDetails(CustomerName,Mobile,Address,Email,Username,Password,IsDeleted) VALUES ('{$customername}','{$mobile}','{$address}','{$email}','{$username}','{$hashedPassword}',{$isdelete})";
 
 		$result =mysqli_query($connection,$sql);
-		//mysqli_slave_query($connection,$sql);
-		//mysqli_query($connection,$sql);
 		echo "".mysqli_affected_rows($connection);
-		//mysqli_master_query($connection,sql);
 		if($result)
 		{
-
 			echo "Added";
-			//header(index.php);
 			exit(0);
 		}
 		else
 		{
 			echo "error";
-			//header(index.php);
 			exit(0);
 		}
 		$sql->execute();
