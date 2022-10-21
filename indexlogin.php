@@ -32,10 +32,10 @@ $dbhost = 'localhost';
 
 			if($result)
 			{
+				echo 'Hello';
 				if(mysqli_num_rows($result) == 1)
 				{
-					$customerQuery = "SELECT CustomerID,CustomerName,Mobile,Address,Email,Password FROM customerDetails WHERE Email = '{$email}' LIMIT 1";
-					$GLOBALS['logedCustomerID'] = "SELECT CustomerID FROM customerDetails WHERE Email = '{$email}' LIMIT 1";
+					echo 'Hello In';
 					header('loginSelectionPage.php');
 
 				}
