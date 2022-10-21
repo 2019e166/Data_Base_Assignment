@@ -19,9 +19,10 @@
 		$email = mysqli_real_escape_string($connection,$_POST['EmailUpdate']);
 		$username = mysqli_real_escape_string($connection,$_POST['UsernameUpdate']);
 		$password = mysqli_real_escape_string($connection,$_POST['PasswordUpdate']);
-		$hashedPassword = sha1($passwordUpdate);
+		$hashedPassword = sha1($password);
 
-		$sql = "UPDATE CUSTOMERDETAILS SET (CustomerName,Mobile,Address,Email,Username,Password,IsDeleted) VALUES ('{$customername}','{$mobile}','{$address}','{$email}','{$username}','{$hashedPassword}',{$isdelete})";
+		$sql = "UPDATE CUSTOMERDETAILS SET (CustomerName,Mobile,Address,Email,Username,Password) VALUES ('{$customername}','{$mobile}','{$address}','{$email}','{$username}','{$hashedPassword}') WHERE Email = '{$email}' LIMIT 1";
+
 
 		$result =mysqli_query($connection,$sql);
 		echo "".mysqli_affected_rows($connection);

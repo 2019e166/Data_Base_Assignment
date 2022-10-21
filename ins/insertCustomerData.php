@@ -1,6 +1,6 @@
 <? php require_once ('inc/connection.php');?>
-<?php 
 
+<?php 
 
 	$dbhost = 'localhost';
 	$dbuser = 'root';
@@ -30,9 +30,11 @@
 
 		$result =mysqli_query($connection,$sql);
 		echo "".mysqli_affected_rows($connection);
+		header('loginSelectionPage.php');
 		if($result)
 		{
-			echo "Added";
+			header('loginSelectionPage.php');
+			echo "Hello Added";
 			exit(0);
 		}
 		else
@@ -46,4 +48,7 @@
 		$connection->close();
 	}
 
+?>
+<?php
+require_once 'inc/footer.php';
 ?>
