@@ -19,8 +19,8 @@
 		<form action="delete.php" method="submit">
 			<button type="submit">Delete Account</button>
 		</form>
-		<form action="registerHome.php" method="submit">
-			<button type="submit">Create Account</button>
+		<form action="readDetails.php" method="submit">
+			<button type="submit">Read Account</button>
 		</form>
 		
 	</div>

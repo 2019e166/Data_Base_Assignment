@@ -35,8 +35,7 @@ $dbhost = 'localhost';
 				echo 'Hello';
 				if(mysqli_num_rows($result) == 1)
 				{
-					echo 'Hello In';
-					header('loginSelectionPage.php');
+					header('Location : loginSelectionPage.php');
 
 				}
 				else

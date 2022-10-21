@@ -30,10 +30,9 @@
 
 		$result =mysqli_query($connection,$sql);
 		echo "".mysqli_affected_rows($connection);
-		header('loginSelectionPage.php');
 		if($result)
 		{
-			header('loginSelectionPage.php');
+			header("Location : loginSelectionPage.php");
 			echo "Hello Added";
 			exit(0);
 		}
