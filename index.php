@@ -5,7 +5,7 @@ require_once 'inc/header.php';
 <form action="" method="post">
 	 
 </form>
-<h1>Home</h1>
+<img src="img/fitshoesLogo.png" width="400" height="200" />
 
 <?php
 require_once 'inc/footer.php';

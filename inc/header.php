@@ -9,6 +9,7 @@ require_once 'inc/connection.php';
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<img src = "img/fitshoesLogo.png" width = "200" height="100"/>
 
 </body>
 <header>
