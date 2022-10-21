@@ -2,7 +2,7 @@
 <?php
 require_once 'inc/header.php';
 ?>
-<?php
+<? php
 <html>
  <head>
  	<title>Delete Customer</title>
@@ -21,7 +21,6 @@ require_once 'inc/header.php';
 			</tr>
 			</table>
 			<button type="submit">Delete Account</button>
-			$query = "DELETE FROM CUSTOMERDETAILS WHERE Email = email";
 		</form>
 	</div>
 </html>
