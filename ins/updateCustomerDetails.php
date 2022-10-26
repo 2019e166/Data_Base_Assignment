@@ -21,7 +21,7 @@
 		$password = mysqli_real_escape_string($connection,$_POST['PasswordUpdate']);
 		$hashedPassword = sha1($password);
 
-		$sql = "UPDATE CUSTOMERDETAILS SET (CustomerName,Mobile,Address,Email,Username,Password) VALUES ('{$customername}','{$mobile}','{$address}','{$email}','{$username}','{$hashedPassword}') WHERE Email = '{$email}' LIMIT 1";
+		$sql = "UPDATE CUSTOMERDETAILS SET (CustomerName,Mobile,Address,Email,Username,Password) VALUES ('{$customername}','{$mobile}','{$address}','{$email}','{$username}','{$hashedPassword}') WHERE Email = '{$email}' AND isDeleted = 1 LIMIT 1";
 
 
 		$result =mysqli_query($connection,$sql);

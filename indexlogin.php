@@ -1,5 +1,8 @@
-<?php 
-$dbhost = 'localhost';
+//Need to delete...
+<? php require_once('login.php') ?>
+<? php 
+	echo 'Hello';
+	$dbhost = 'localhost';
 	$dbuser = 'root';
 	$dbpass = '';
 	$dbname = 'onlineshoestore'; 

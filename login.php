@@ -1,7 +1,57 @@
-<?php require_once('inc/connection.php'); ?>
+<? php require_once('inc/connection.php'); ?>
 <?php
 require_once 'inc/header.php';
 ?>
+<?php 
+	$dbhost = 'localhost';
+	$dbuser = 'root';
+	$dbpass = '';
+	$dbname = 'onlineshoestore'; 
+
+	$connection = mysqli_connect('localhost', 'root', '', 'onlineshoestore');
+	if(isset($_POST['submitLogin']))
+	{
+		echo 'Submit';
+		$errors = array();
+		if(!isset($_POST['email'])||strlen(trim($_POST['email']))<1)
+		{
+			echo 'submit1';
+			$errors[] = 'Username Invalid.';
+		}
+		if(!isset($_POST['password'])||strlen(trim($_POST['password']))<1)
+		{
+			echo 'submit2';
+			$errors[] = 'Password Invalid.';
+		}
+		if(empty($errors))
+		{
+			$email = mysqli_real_escape_string($connection,$_POST['email']);
+			$password = mysqli_real_escape_string($connection,$_POST['password']);
+			$hashedPassword = sha1($password);
+
+			$query = "SELECT Email FROM customerDetails WHERE Email = '{$email}' LIMIT 1";
+
+			$result = mysqli_query($connection,$query);
+
+			if($result)
+			{
+				if(mysqli_num_rows($result) == 1)
+				{
+					header('Location: loginSelectionPage.php');
+
+				}
+				else
+				{
+					$errors[] = 'Invalid username or password';
+				}
+			}
+			else {
+				$error[] = 'Query failed.';	
+			}
+
+		}
+	}
+	?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +64,7 @@ require_once 'inc/header.php';
 		<h3>Log In</h3>
 		<p> No Account <a href="registerHome.php">Register Now!</a></p>
 		<p> Return to Home Page <a href="index.php">Home Page</a></p>
-		<form action="indexlogin.php" method="post">
+		<form action="login.php" method="post">
 			<input type="text" name="email" id = "" placeholder="Email">
 			<input type="password" name="password" id = "" placeholder="Password">
 			<button type="submit" name="submitLogin">Login</button>

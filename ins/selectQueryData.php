@@ -7,7 +7,8 @@
 
 	$connection = mysqli_connect('localhost', 'root', '', 'onlineshoestore'); 
 	$email = mysqli_real_escape_string($connection,$_POST['EmailRead']);
-	$query = "SELECT CustomerID,CustomerName,Mobile,Address,Email FROM CUSTOMERDETAILS WHERE Email = '{email}' LIMIT 1";
+	$isdelete = 0;
+	$query = "SELECT CustomerID,CustomerName,Mobile,Address,Email FROM CUSTOMERDETAILS WHERE (Email = '{email}' AND IsDeleted = '{$isdelete}') LIMIT 1";
 	$result = mysqli_query($connection,$query);
 	if($result)
 	{
