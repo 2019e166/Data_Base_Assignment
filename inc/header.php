@@ -13,11 +13,12 @@ require_once 'inc/connection.php';
 
 </body>
 <header>
-	<nav>
-		<u1>
-			<li><a href="index.php">Home</a></li>
-			<li><a href="loginHome.php">Login</a></li>
-			<li><a href="registerHome.php">Register</a></li>
-
+	<div>
+		<form>
+			<button type="submit" formaction="index.php">Home</button>
+			<button type="submit" formaction="loginHome.php">Login</button>
+			<button type="submit" formaction="registerHome.php">Register</button>
+		</form>
+	</div>
 </header>
 </html>
