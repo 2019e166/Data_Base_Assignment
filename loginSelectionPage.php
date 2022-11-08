@@ -16,7 +16,7 @@ require_once('inc/connection.php'); ?>
 
 	</div>
 	<div class="panel-body">
-		<form action="findItem.php" method="submit">
+		<form action="findItemN.php" method="submit">
 			<button type="submit">Find Shoes</button>
 		</form>
 		<form action="updateCustomerDetailsHomePage.php" method="submit">

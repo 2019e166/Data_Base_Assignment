@@ -1,5 +1,45 @@
 <? php session_start(); ?>
 <? php require_once(inc/connection.php) ?>
+<?php
+	session_start();
+	$dbhost = 'localhost';
+	$dbuser = 'root';
+	$dbpass = '';
+	$dbname = 'onlineshoestore'; 
+	$connection = new mysqli('localhost', 'root', '', 'onlineshoestore'); 
+	// if (mysqli_connect_errno()) {
+	
+	// 	die('Database connection failed ' . mysqli_connect_error());
+	// }
+	// else
+	// {
+		if(isset($_POST['UpdateDetailsButton']))
+		{
+		echo "Connection successful.";
+		$customername = mysqli_real_escape_string($connection,$_POST['customerNameUpdate']);
+		$mobile = mysqli_real_escape_string($connection,$_POST['MobileUpdate']);
+		$address = mysqli_real_escape_string($connection,$_POST['AddressUpdate']);
+		$email = mysqli_real_escape_string($connection,$_POST['EmailUpdate']);
+		$username = mysqli_real_escape_string($connection,$_POST['UsernameUpdate']);
+		$password = mysqli_real_escape_string($connection,$_POST['PasswordUpdate']);
+		$hashedPassword = sha1($password);
+		#$loggingEmail = $_SESSION['loggedCustomerEmail'];
+		$loggingEmail = 'tayhawi@slt.com';
+
+
+		$sql = "UPDATE CUSTOMERDETAILS SET CustomerName='{$customername}'LIMIT 1";
+		#$sql .= "WHERE Email = {$_SESSION['loggedCustomerEmail']} LIMIT 1"; 
+		$result =mysqli_query($connection,$sql);
+		if(!$result)
+		{
+			echo "Fail";
+		}
+	}
+	else
+	{
+		echo "Button fail.";
+	}
+?>
  <html>
  <head>
  	
@@ -7,7 +47,7 @@
  	<link rel="stylesheet" type="text/css" href="css/styleForbutton.css">
  </head>
  <div class = "panel-body">
-	<form action="ins/updateCustomerDetails.php" method ="POST">
+	<form action="updateCustomerDetailsHomePage.php" method ="POST">
 		<table>
 			<tr>
 				<td>
@@ -61,7 +101,7 @@
 				</td>
 			</tr>
 		</table>
-		<button type="submit">Update Details</button>
+		<button type="submit" name="UpdateDetailsButton">Update Details</button>
 	</form>
 	<img src="img/fitshoesLogo.png" width="200" height="100" />
 	<p> Back to login page.<a href="registerHome.php"> Back </a></p>

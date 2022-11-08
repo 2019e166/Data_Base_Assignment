@@ -4,3 +4,15 @@ button{
 	background-color: #0de2c2;
 	color: #ffffff;
 }
+
+table.masterlist{
+	width:  100%;
+}
+table.masterlist th{
+	background: #aaa;
+}
+table.masterlist th,table.masterlist td{
+	padding: 10%px;
+
+}
+
