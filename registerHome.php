@@ -10,6 +10,7 @@ require_once 'inc/header.php';
 	<button type="submit" formaction="register.html">Register as customer</button>
 	<button type="submit" formaction="registerSellers.php">Register as seller.</button>
 </form>
+<img src="img/fitshoesLogo.png" width="200" height="100" />
 </div>
 <? php
 require_once 'inc/footer.php';

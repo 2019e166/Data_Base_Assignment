@@ -15,6 +15,11 @@ require_once 'inc/connection.php';
 <header>
 	<div>
 		<form>
+			<label for "TPNumber">+94-112345627</label>
+		</form>
+	</div>
+	<div>
+		<form>
 			<button type="submit" formaction="index.php">Home</button>
 			<button type="submit" formaction="loginHome.php">Login</button>
 			<button type="submit" formaction="registerHome.php">Register</button>

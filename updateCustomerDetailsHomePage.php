@@ -1,6 +1,8 @@
+<? php session_start(); ?>
 <? php require_once(inc/connection.php) ?>
  <html>
  <head>
+ 	
  	<title>Edit Customer Details.</title>
  	<link rel="stylesheet" type="text/css" href="css/styleForbutton.css">
  </head>
@@ -10,6 +12,9 @@
 			<tr>
 				<td>
 					Customer Name 
+				</td>
+				<td>
+					
 				</td>
 				<td>
 					<input type="text" placeholder="Customer Name Update" name="customerNameUpdate">
@@ -58,5 +63,6 @@
 		</table>
 		<button type="submit">Update Details</button>
 	</form>
+	<img src="img/fitshoesLogo.png" width="200" height="100" />
 	<p> Back to login page.<a href="registerHome.php"> Back </a></p>
 </div>

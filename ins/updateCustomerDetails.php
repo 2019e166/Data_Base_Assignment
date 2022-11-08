@@ -1,6 +1,6 @@
 <? php require_once(inc/connection.php); ?>
-<?php
-
+<? php
+	session_start();
 	$dbhost = 'localhost';
 	$dbuser = 'root';
 	$dbpass = '';
@@ -20,12 +20,15 @@
 		$username = mysqli_real_escape_string($connection,$_POST['UsernameUpdate']);
 		$password = mysqli_real_escape_string($connection,$_POST['PasswordUpdate']);
 		$hashedPassword = sha1($password);
+		$loggingEmail = $_SESSION['loggedCustomerEmail'];
 
-		$sql = "UPDATE CUSTOMERDETAILS SET (CustomerName,Mobile,Address,Email,Username,Password) VALUES ('{$customername}','{$mobile}','{$address}','{$email}','{$username}','{$hashedPassword}') WHERE Email = '{$email}' AND isDeleted = 1 LIMIT 1";
 
+		$sql = "UPDATE CUSTOMERDETAILS SET CustomerName='{$customername}',Mobile='{$mobile}',Address='{$address}',Username='{$username}',Password='{$hashedPassword}' WHERE Email = '{$loggingEmail}' AND isDeleted = 0 LIMIT 1";
+
+		echo "Inside";
 
 		$result =mysqli_query($connection,$sql);
-		echo "".mysqli_affected_rows($connection);
+
 		if($result)
 		{
 			echo "Added";
@@ -36,9 +39,9 @@
 			echo "error";
 			exit(0);
 		}
-		$sql->execute();
+
 		echo "Registration successful.";
 		$sql->close();
 		$connection->close();
 	}
-	?>
+?>

@@ -1,8 +1,11 @@
-<? php require_once('inc/connection.php'); ?>
+
+<? php require_once('inc/connection.php'); 
+?>
 <?php
 require_once 'inc/header.php';
 ?>
 <?php 
+	session_start();
 	$dbhost = 'localhost';
 	$dbuser = 'root';
 	$dbpass = '';
@@ -25,7 +28,9 @@ require_once 'inc/header.php';
 		}
 		if(empty($errors))
 		{
-			$email = mysqli_real_escape_string($connection,$_POST['email']);
+			$email = mysqli_real_escape_string($connection,$_POST['email']);//##Session
+			session_start();
+			//$_SESSION['loggedCustomerEmail'] = $email;
 			$password = mysqli_real_escape_string($connection,$_POST['password']);
 			$hashedPassword = sha1($password);
 
@@ -37,6 +42,9 @@ require_once 'inc/header.php';
 			{
 				if(mysqli_num_rows($result) == 1)
 				{
+					$user = mysqli_fetch_assoc($result);
+					$_SESSION['loggedCustomerEmail'] = $user['Email'];
+					#$$GLOBALS['loggedCustomerEmail'] = something;
 					header('Location: loginSelectionPage.php');
 
 				}
@@ -65,7 +73,7 @@ require_once 'inc/header.php';
 		<p> No Account <a href="registerHome.php">Register Now!</a></p>
 		<p> Return to Home Page <a href="index.php">Home Page</a></p>
 		<form action="login.php" method="post">
-			<input type="text" name="email" id = "" placeholder="Email">
+			<input type="text" name="email" id = "" placeholder="Email"> ?>
 			<input type="password" name="password" id = "" placeholder="Password">
 			<button type="submit" name="submitLogin">Login</button>
 		</form>
