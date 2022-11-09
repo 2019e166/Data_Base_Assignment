@@ -27,8 +27,7 @@ require_once 'inc/header.php';
 		}
 		if(empty($errors))
 		{
-			$email = mysqli_real_escape_string($connection,$_POST['email']);//##Session
-			//$_SESSION['loggedCustomerEmail'] = $email;
+			$email = mysqli_real_escape_string($connection,$_POST['email']);
 			$password = mysqli_real_escape_string($connection,$_POST['password']);
 			$hashedPassword = sha1($password);
 
@@ -41,9 +40,8 @@ require_once 'inc/header.php';
 				if(mysqli_num_rows($result) == 1)
 				{
 					$user = mysqli_fetch_assoc($result);
-					$_SESSION['loggedCustomerEmail'] = $user['Email'];
-					$_SESSION['loggedID'] = $user['CustomerID'];
-					#$$GLOBALS['loggedCustomerEmail'] = something;
+					$_SESSION['loggedCustomerEmail'] = $user['Email']; //Session variable.
+					$GLOBALS['loggedCustomerEmail'] = $user['Email'];
 					header('Location: loginSelectionPage.php');
 
 				}

@@ -5,6 +5,11 @@ button{
 	color: #ffffff;
 }
 
+main{
+	width: 1000px;
+	margin: 30px auto;
+}
+
 table.masterlist{
 	width:  100%;
 }
@@ -13,6 +18,7 @@ table.masterlist th{
 }
 table.masterlist th,table.masterlist td{
 	padding: 10%px;
+	border-bottom: 1px solid #aaa;
 
 }
 

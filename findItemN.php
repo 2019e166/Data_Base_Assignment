@@ -1,9 +1,9 @@
+<?php session_start(); ?>
 <? php require_once('inc/connection.php'); ?>
 <?php
 require_once 'inc/header.php';
 ?>
 <?php
-session_start();
 $dbhost = 'localhost';
     $dbuser = 'root';
     $dbpass = '';
@@ -14,10 +14,19 @@ $dbhost = 'localhost';
     if(isset($_POST['findItembySizeButton']))
     {
         echo "Hello In";  
-        
-        $querySelect = "SELECT ProductID,Price,Description FROM productdetails WHERE Shoe_Size = 8 "; 
+        $shoeSize = mysqli_real_escape_string($connection,$_POST['shoeSize']);
+
+        #$password = mysqli_real_escape_string($connection,$_POST["shoeSize"]);
+        #$GLOBALS['size'] = mysqli_real_escape_string($connection,$_POST['shoeSize']);
+
+        $querySelect = "SELECT ProductID,Price,Description FROM productdetails WHERE Shoe_Size = '$shoeSize' "; 
         //Size not change.
          $result = mysqli_query($connection,$querySelect);
+
+
+        $user = mysqli_fetch_assoc($result);
+        $_SESSION['shoeSize'] = $user['Shoe_Size']; //Session variable.
+        $GLOBALS['shoeSize'] = $user['Shoe_Size']; 
 
          if($result)
          {
@@ -44,6 +53,7 @@ $dbhost = 'localhost';
     else
     {
         echo "waiting";
+        echo $_SESSION['loggedCustomerEmail'];
     }
 ?>
 <!DOCTYPE html>
@@ -53,17 +63,23 @@ $dbhost = 'localhost';
 </head>
 <body>
     <div class = "from-group">
-        <form>
+        <!-- <form method = "post">
             <label for = "Enter Shoe size : ">Enter your shoe size</label>
-            <input type="text" class="form-control" id="shoeSize" name="shoeSize" />
+            <input type="text" name = "shoeSize" id="" placeholder="Size">
         </form>
         <form action = "findItemN.php" method = "post">
             <button type="submit" name="findItembySizeButton">Find Item by Size</button>
+        </form> -->
+
+        <form action = "findItemN.php" method = "post">
+            <label for = "Enter Shoe size : ">Enter your shoe size</label>
+            <input type="text" name = "shoeSize" id="" placeholder="Size">
+            <button type="submit" name="findItembySizeButton">Find Item by Size</button>
         </form>
 <div>
-    <form>
+    <form method = "post">
         <label for = "Enter Shoe size : ">Enter your shoe type</label>
-        <input type="text" class="form-control" id="shoeType" name="shoeType" />
+        <input type="text"  name = "Type" id="" placeholder="Type" >
     </form>
     <form action = "findItemN.php" method = "post">
         <button type="submit" name="findItembyTypeButton">Find Item by Type</button>
