@@ -12,6 +12,6 @@ require_once 'inc/header.php';
 </form>
 <img src="img/fitshoesLogo.png" width="200" height="100" />
 </div>
-<? php
+<?php
 require_once 'inc/footer.php';
 ?>

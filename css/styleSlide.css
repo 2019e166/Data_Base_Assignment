@@ -21,3 +21,8 @@ body{
 .swiper-slide img{
 
 }
+
+.swiper .swiper-button-prev,.swiper-button-next{
+	color: #blue;
+	
+}

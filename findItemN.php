@@ -15,11 +15,7 @@ $dbhost = 'localhost';
     {
         $shoeSize = mysqli_real_escape_string($connection,$_POST['shoeSize']);
 
-        #$password = mysqli_real_escape_string($connection,$_POST["shoeSize"]);
-        #$GLOBALS['size'] = mysqli_real_escape_string($connection,$_POST['shoeSize']);
-
         $querySelect = "SELECT ProductID,Price,Description FROM productdetails WHERE ShoeSize = '$shoeSize' "; 
-        //Size not change.
          $result = mysqli_query($connection,$querySelect);
 
 
@@ -52,7 +48,7 @@ $dbhost = 'localhost';
     }
     else
     {
-        echo "waiting";
+        echo "Welcome:  ";
         echo $_SESSION['loggedCustomerEmail'];
     }
 ?>

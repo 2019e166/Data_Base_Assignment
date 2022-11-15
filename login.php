@@ -13,16 +13,14 @@ require_once 'inc/header.php';
 	$connection = mysqli_connect('localhost', 'root', '', 'onlineshoestore');
 	if(isset($_POST['submitLogin']))
 	{
-		echo 'Submit';
 		$errors = array();
 		if(!isset($_POST['email'])||strlen(trim($_POST['email']))<1)
 		{
-			echo 'submit1';
+			echo 'Invalid User';
 			$errors[] = 'Username Invalid.';
 		}
 		if(!isset($_POST['password'])||strlen(trim($_POST['password']))<1)
 		{
-			echo 'submit2';
 			$errors[] = 'Password Invalid.';
 		}
 		if(empty($errors))

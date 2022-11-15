@@ -1,4 +1,10 @@
 <body>
+	<style>
+		footer{
+			font-family: "times new roman";
+			background-color: #7df9ff;
+		}
+	</style>
 	<footer>
 		<p>
 			<div class="panel-footer text-right">

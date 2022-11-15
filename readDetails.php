@@ -33,17 +33,40 @@
 ?>
 
 <html>
+<center>
  <head>
- 	
  	<title>New Customer Details.</title>
  	<link rel="stylesheet" type="text/css" href="css/styleForbutton.css">
  </head>
  <div class = "panel-body">
 	<form>
+		<style>
+			.table{
+	border-collapse: collapse;
+	width: 80%;
+	margin: 50px auto;
+}
+
+td,th{
+	border: 3px solid gray;
+	padding: 10px;
+	font-family: "times new roman";
+}
+
+p{
+	font-family: "times new roman";
+}
+
+tr,td: nth-child(2)
+{
+	text-align: center;
+}
+
+		</style>
 		<table>
 			<tr>
 				<td>
-					Customer Name 
+					 Customer Name 
 				</td>
 				<td>
 					<input type="text" name="customerNameUpdate" <?php echo 'value="' .$customernameDataBase . '"'; ?>>
@@ -51,7 +74,7 @@
 			</tr>
 			<tr>
 				<td>
-					Mobile 
+					 Mobile 
 				</td>
 				<td>
 					<input type="text" name="mobileDataBase" <?php echo 'value="' .$mobileDataBase . '"'; ?>>
@@ -59,7 +82,7 @@
 			</tr>
 			<tr>
 				<td>
-					Address 
+					 Address 
 				</td>
 				<td>
 					<input type="text" name="addressDataBase" <?php echo 'value="' .$addressDataBase . '"'; ?>>
@@ -67,7 +90,7 @@
 			</tr>
 			<tr>
 				<td>
-					Email 
+					 Email 
 				</td>
 				<td>
 					<input type="text" name="addressDataBase" <?php echo 'value="' .$emailDataBase . '"'; ?>>
@@ -75,7 +98,7 @@
 			</tr>
 			<tr>
 				<td>
-					UserName 
+					 UserName 
 				</td>
 				<td>
 					<input type="text" name="usernameDataBase" <?php echo 'value="' .$usernameDataBase . '"'; ?>>
@@ -87,4 +110,5 @@
 	<p> Back to login selection page.<a href="loginSelectionPage.php"> Login Selection Page</a></p>
 	<p> Back to login page.<a href="registerHome.php"> Back </a></p>
 </div>
+</center>
 </html>

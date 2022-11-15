@@ -3,6 +3,16 @@ require_once 'inc/connection.php';
 ?>
 <!DOCTYPE html>
 <html>
+<style>
+	header{
+		font-family: "times new roman";
+	}
+	form{
+		font-family: "times new roman";
+		background-color: #76ff7a;
+	}
+	
+</style>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
