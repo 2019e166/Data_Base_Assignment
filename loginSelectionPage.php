@@ -1,6 +1,6 @@
 <? php
 session_start(); 
-echo "Welcome"; #.$_SESSION['loggedCustomerEmail'];
+echo "Welcome" .$_SESSION['loggedCustomerEmail'];#########
 require_once('inc/connection.php'); ?>
 
 <html>

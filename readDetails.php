@@ -1,47 +1,90 @@
-<? php require_once('inc/connection.php'); ?>
+<? php session_start(); ?>
+<? php require_once(inc/connection.php) ?>
 <?php
-require_once 'inc/header.php';
-?>
-<?php 
+	session_start();
 	$dbhost = 'localhost';
 	$dbuser = 'root';
 	$dbpass = '';
 	$dbname = 'onlineshoestore'; 
+	$connection = new mysqli('localhost', 'root', '', 'onlineshoestore'); 
+	$loggingEmail = $_SESSION['loggedCustomerEmail'];
+	$sqlSelect = "SELECT Customername, Mobile, Email, Address, Username FROM customerDetails WHERE Email = '$loggingEmail' LIMIT 1";
+	$resultselect = mysqli_query($connection,$sqlSelect);
+	$customernameDataBase = '';
+	$mobileDataBase = '';
+	$addressDataBase = '';
+	$emailDataBase = '';
+	$usernameDataBase = '';
 
-	$connection = mysqli_connect('localhost', 'root', '', 'onlineshoestore'); 
-	if(isset($_POST['submitLogin']))
+	if($resultselect)
 	{
-		echo 'Submit';
-		$errors = array();
-		if(!isset($_POST['EmailRead'])||strlen(trim($_POST['EmailRead']))<1)
-		{
-			echo 'submit1';
-			$errors[] = 'Username Invalid.';
-		}
-		if(empty($errors))
-		{
-			$email = mysqli_real_escape_string($connection,$_POST['EmailRead']);
-			$query = "SELECT CustomerID,CustomerName,Mobile,Address,Email FROM CUSTOMERDETAILS WHERE Email = '{email}' LIMIT 1";
-			$result = mysqli_query($connection,$query);
-		}
-	if($result)
-	{
-		echo 'Hiiiiii I M IN';
-		
+		$resultselectans = mysqli_fetch_assoc($resultselect);
+		$customernameDataBase = $resultselectans['Customername'];
+		$mobileDataBase = $resultselectans['Mobile'];
+		$addressDataBase = $resultselectans['Address'];
+		$emailDataBase = $resultselectans['Email'];
+		$usernameDataBase = $resultselectans['Username'];
+
 	}
-}
+	else
+	{
+		header('Could not found..');
+	}
 ?>
+
 <html>
-	<div class = "panel-body">
-				<form action="readDetails.php" method ="POST">
-					<div class = "form-group">
-						<label for = "Enter Email : ">Customer Email</label>
-						<input type="text" class="form-control" id="Email" name="EmailRead" />
-					</div>
-					<button type="submit" name="submitLogin">Find Details</button>
-				</form>
-	</div>
+ <head>
+ 	
+ 	<title>New Customer Details.</title>
+ 	<link rel="stylesheet" type="text/css" href="css/styleForbutton.css">
+ </head>
+ <div class = "panel-body">
+	<form>
+		<table>
+			<tr>
+				<td>
+					Customer Name 
+				</td>
+				<td>
+					<input type="text" name="customerNameUpdate" <?php echo 'value="' .$customernameDataBase . '"'; ?>>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Mobile 
+				</td>
+				<td>
+					<input type="text" name="mobileDataBase" <?php echo 'value="' .$mobileDataBase . '"'; ?>>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Address 
+				</td>
+				<td>
+					<input type="text" name="addressDataBase" <?php echo 'value="' .$addressDataBase . '"'; ?>>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Email 
+				</td>
+				<td>
+					<input type="text" name="addressDataBase" <?php echo 'value="' .$emailDataBase . '"'; ?>>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					UserName 
+				</td>
+				<td>
+					<input type="text" name="usernameDataBase" <?php echo 'value="' .$usernameDataBase . '"'; ?>>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<img src="img/fitshoesLogo.png" width="200" height="100" />
+	<p> Back to login selection page.<a href="loginSelectionPage.php"> Login Selection Page</a></p>
+	<p> Back to login page.<a href="registerHome.php"> Back </a></p>
+</div>
 </html>
-<?php
-require_once 'inc/footer.php';
-?>

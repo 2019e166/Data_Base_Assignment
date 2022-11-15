@@ -3,11 +3,13 @@
 require_once 'inc/header.php';
 ?>
 <?php 
+	session_start();
 	$dbhost = 'localhost';
 	$dbuser = 'root';
 	$dbpass = '';
 	$dbname = 'onlineshoestore'; 
 	$connection = new mysqli($dbhost, $dbuser, $dbpass , $dbname); 
+	$loggingEmail = $_SESSION['loggedCustomerEmail'];
 	if(!isset ($_POST['submitDelete']))
 	{
 		if(!isset($_POST['email'])||strlen(trim($_POST['email']))<1)
@@ -17,10 +19,7 @@ require_once 'inc/header.php';
 		if(empty($errors))
 		{
 			echo hellooooo;
-			$email = mysqli_real_escape_string($connection,$_POST['email']);
-			$query = "DELETE FROM CUSTOMERDETAILS WHERE Email = '{$email}' LIMIT 1";
-			//$isdelete = 0;
-			//$query = "UPDATE CUSTOMERDETAILS SET IsDeleted VALUES {$isdelete} WHERE Email = '{$email}' LIMIT 1";
+			$query = "DELETE FROM CUSTOMERDETAILS WHERE Email = $loggingEmail LIMIT 1";
 			$result = mysqli_query($connection,$query);
 		if($result)
 			{

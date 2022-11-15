@@ -13,20 +13,20 @@ $dbhost = 'localhost';
     $shoeList = '';
     if(isset($_POST['findItembySizeButton']))
     {
-        echo "Hello In";  
         $shoeSize = mysqli_real_escape_string($connection,$_POST['shoeSize']);
 
         #$password = mysqli_real_escape_string($connection,$_POST["shoeSize"]);
         #$GLOBALS['size'] = mysqli_real_escape_string($connection,$_POST['shoeSize']);
 
-        $querySelect = "SELECT ProductID,Price,Description FROM productdetails WHERE Shoe_Size = '$shoeSize' "; 
+        $querySelect = "SELECT ProductID,Price,Description FROM productdetails WHERE ShoeSize = '$shoeSize' "; 
         //Size not change.
          $result = mysqli_query($connection,$querySelect);
 
 
         $user = mysqli_fetch_assoc($result);
-        $_SESSION['shoeSize'] = $user['Shoe_Size']; //Session variable.
-        $GLOBALS['shoeSize'] = $user['Shoe_Size']; 
+        $_SESSION['shoeSize'] = $shoeSize; //Session variable.
+        $GLOBALS['shoeSize'] = $shoeSize; 
+        
 
          if($result)
          {
@@ -63,14 +63,6 @@ $dbhost = 'localhost';
 </head>
 <body>
     <div class = "from-group">
-        <!-- <form method = "post">
-            <label for = "Enter Shoe size : ">Enter your shoe size</label>
-            <input type="text" name = "shoeSize" id="" placeholder="Size">
-        </form>
-        <form action = "findItemN.php" method = "post">
-            <button type="submit" name="findItembySizeButton">Find Item by Size</button>
-        </form> -->
-
         <form action = "findItemN.php" method = "post">
             <label for = "Enter Shoe size : ">Enter your shoe size</label>
             <input type="text" name = "shoeSize" id="" placeholder="Size">

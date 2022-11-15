@@ -7,14 +7,29 @@
 	$dbpass = '';
 	$dbname = 'onlineshoestore'; 
 	$connection = new mysqli('localhost', 'root', '', 'onlineshoestore'); 
-	// if (mysqli_connect_errno()) {
-	
-	// 	die('Database connection failed ' . mysqli_connect_error());
-	// }
-	// else
-	// {
-		if(isset($_POST['UpdateDetailsButton']))
-		{
+	$loggingEmail = $_SESSION['loggedCustomerEmail'];
+	$sqlSelect = "SELECT Customername, Mobile, Address, Username FROM customerDetails WHERE Email = '$loggingEmail' LIMIT 1";
+	$resultselect = mysqli_query($connection,$sqlSelect);
+	$customernameDataBase = '';
+	$mobileDataBase = '';
+	$addressDataBase = '';
+	$usernameDataBase = '';
+
+	if($resultselect)
+	{
+		$resultselectans = mysqli_fetch_assoc($resultselect);
+		$customernameDataBase = $resultselectans['Customername'];
+		$mobileDataBase = $resultselectans['Mobile'];
+		$addressDataBase = $resultselectans['Address'];
+		$usernameDataBase = $resultselectans['Username'];
+
+	}
+	else
+	{
+		header('Could not found..');
+	}
+	if(isset($_POST['UpdateDetailsButton']))
+	{
 		echo "Connection successful.";
 		$customername = mysqli_real_escape_string($connection,$_POST['customerNameUpdate']);
 		$mobile = mysqli_real_escape_string($connection,$_POST['MobileUpdate']);
@@ -23,26 +38,22 @@
 		$username = mysqli_real_escape_string($connection,$_POST['UsernameUpdate']);
 		$password = mysqli_real_escape_string($connection,$_POST['PasswordUpdate']);
 		$hashedPassword = sha1($password);
-		#$loggingEmail = $_SESSION['loggedCustomerEmail'];
-		$loggingEmail = 'tayhawi@slt.com';
+		
 
+		$sql = "UPDATE CUSTOMERDETAILS SET CustomerName='{$customername}' ,Mobile='{$mobile}',Address='{$address}',Username='{$username}',Password='{$hashedPassword}' WHERE Email = '$loggingEmail' LIMIT 1";
 
-		$sql = "UPDATE CUSTOMERDETAILS SET CustomerName='{$customername}'LIMIT 1";
-		#$sql .= "WHERE Email = {$_SESSION['loggedCustomerEmail']} LIMIT 1"; 
 		$result =mysqli_query($connection,$sql);
+
+		header('Location: readDetails.php');
+
 		if(!$result)
 		{
 			echo "Fail";
 		}
 	}
-	else
-	{
-		echo "Button fail.";
-	}
 ?>
  <html>
  <head>
- 	
  	<title>Edit Customer Details.</title>
  	<link rel="stylesheet" type="text/css" href="css/styleForbutton.css">
  </head>
@@ -54,7 +65,7 @@
 					Customer Name 
 				</td>
 				<td>
-					
+					<input type="text" name="customerNameUpdate" <?php echo 'value="' .$customernameDataBase . '"'; ?>>
 				</td>
 				<td>
 					<input type="text" placeholder="Customer Name Update" name="customerNameUpdate">
@@ -65,6 +76,9 @@
 					Mobile 
 				</td>
 				<td>
+					<input type="text" name="mobileDataBase" <?php echo 'value="' .$mobileDataBase . '"'; ?>>
+				</td>
+				<td>
 					<input type="text" placeholder="Customer New Mobile" name="MobileUpdate">
 				</td>
 			</tr>
@@ -73,20 +87,18 @@
 					Address 
 				</td>
 				<td>
+					<input type="text" name="addressDataBase" <?php echo 'value="' .$addressDataBase . '"'; ?>>
+				</td>
+				<td>
 					<input type="text" placeholder="Customer New Address" name="AddressUpdate">
 				</td>
 			</tr>
 			<tr>
 				<td>
-					Email 
-				</td>
-				<td>
-					<input type="text" placeholder="Customer New Email" name="EmailUpdate">
-				</td>
-			</tr>
-			<tr>
-				<td>
 					UserName 
+				</td>
+				<td>
+					<input type="text" name="usernameDataBase" <?php echo 'value="' .$usernameDataBase . '"'; ?>>
 				</td>
 				<td>
 					<input type="text" placeholder="Customer New Username" name="UsernameUpdate">

@@ -9,20 +9,35 @@ require_once 'inc/connection.php';
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<img src = "img/fitshoesLogo.png" width = "200" height="100"/>
-
+	<center>
+		<img src = "img/fitshoesLogo.png" width = "200" height="100"/>
+	</center>
 </body>
 <header>
 	<div>
 		<form>
-			<label for "TPNumber">+94-112345627</label>
+			<img src="img/logo.png" width="30" height="30"/>
+			<img src="img/fblogo.png" width="30" height="30"/>
+			<a href="registerHome.php">fitshoes</a>
+			<img src="img/instgram.png" width="30" height="30"/>
+			<a href="registerHome.php">fitshoes</a>
+			<img src="img/whatsaplogo.png" width="30" height="30"/>
+			<label for "TPNumber"> +94-792345627</label>
+			<img src="img/call.png" width="30" height="30"/>
+			<label for "TPNumber"> +94-112345627  +94-11234568</label>
+			<img src="img/email.png" width="30" height="30"/>
+			<a href="registerHome.php">fitshoecustomerPage@fitshoe.com </a>
 		</form>
 	</div>
+</header>
+<header>
 	<div>
 		<form>
-			<button type="submit" formaction="index.php">Home</button>
-			<button type="submit" formaction="loginHome.php">Login</button>
-			<button type="submit" formaction="registerHome.php">Register</button>
+			<center>
+				<button type="submit" formaction="index.php">Home</button>
+				<button type="submit" formaction="loginHome.php">Login</button>
+				<button type="submit" formaction="registerHome.php">Register</button>
+			</center>
 		</form>
 	</div>
 </header>
