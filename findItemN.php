@@ -12,6 +12,7 @@ $dbhost = 'localhost';
     $connection = mysqli_connect('localhost', 'root', '', 'onlineshoestore');
     $shoeList = '';
 
+
     if(isset($_POST['findItembySizeButton']))
     {
         $shoeSize = mysqli_real_escape_string($connection,$_POST['shoeSize']);
@@ -23,6 +24,7 @@ $dbhost = 'localhost';
         $user = mysqli_fetch_assoc($result);
         $_SESSION['shoeSize'] = $shoeSize; //Session variable.
         $GLOBALS['shoeSize'] = $shoeSize; 
+
         
 
          if($result)
@@ -30,6 +32,7 @@ $dbhost = 'localhost';
             while ($userrec = mysqli_fetch_assoc($result)) {
                 $shoeList .= "<tr>";
                 $shoeList .= "<td>{$userrec['ProductID']}</td>";
+                $_SESSION['productid'] = $userrec['ProductID'];  ####
                 $shoeList .= "<td>{$userrec['Price']}</td>";
                 $shoeList .= "<td>{$userrec['Description']}</td>";
                 $shoeList .= "</tr>";
@@ -47,6 +50,33 @@ $dbhost = 'localhost';
         $result = mysqli_query($connection,$querySelect);
 
     }
+
+    #NEWW
+
+
+    else if(isset($_POST['addCartButton']))
+    {
+        $shoeSize = $_SESSION['shoeSize'];
+        $querySelect = "SELECT ProductID,Price,Description FROM productdetails WHERE ShoeSize = '$shoeSize' "; 
+        $result = mysqli_query($connection,$querySelect);
+        $userrec = mysqli_fetch_assoc($result);
+        $payType = mysqli_real_escape_string($connection,$_POST['customerpayment']);
+        $productID = $userrec['ProductID'];
+        date_default_timezone_set('Asia/Kolkata');
+        $date = date('d-m-y h:i:s'); 
+        $description = $userrec['Description'];
+        $cutomerEmail = $_SESSION['loggedCustomerEmail'];
+        $queryGetID = "SELECT CustomerID FROM customerDetails WHERE Email = '$cutomerEmail' LIMIT 1";
+        $resu = mysqli_query($connection,$queryGetID);
+        $userrecord = mysqli_fetch_assoc($resu);
+
+        $customerID = $userrecord['CustomerID'];
+        $queryaddCart = "INSERT INTO ORDERDETAILS(CUSTOMERID,PRODUCTID,DATE,TYPE,DESCRIPTION) VALUES ('{$customerID}','{$productID}','{$date}','{$payType}','{$description}')";
+
+        $result = mysqli_query($connection,$queryaddCart);
+    }
+
+
     else
     {
         echo "Welcome:  ";
@@ -91,6 +121,7 @@ $dbhost = 'localhost';
             text-align: center;
         }
     </style>
+    <form action = "findItemN.php" method = "post">
     <table class="masterlist">
         <tr>
             <th>Product ID </th>
@@ -99,13 +130,18 @@ $dbhost = 'localhost';
         </tr>
         <?php echo $shoeList; ?>
     </table>
+
     <table>
         <tr> 
             <th>Type</th> 
             <th><input type="text" placeholder="Cash on delivery / Pay Online" name="customerpayment"></th>
         </tr>
     </table>
+    
     <button type="submit" name="addCartButton">Add to Cart</button>
+
+    <button type="submit" name="showmyCartButton">Show my Cart</button>
+</form>
 </main>
 </body>
 </html>
