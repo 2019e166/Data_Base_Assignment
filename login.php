@@ -21,6 +21,7 @@ require_once 'inc/header.php';
 		}
 		if(!isset($_POST['password'])||strlen(trim($_POST['password']))<1)
 		{
+			echo 'Invalid Password.';
 			$errors[] = 'Password Invalid.';
 		}
 		if(empty($errors))
@@ -30,6 +31,7 @@ require_once 'inc/header.php';
 			$hashedPassword = sha1($password);
 
 			$query = "SELECT Email FROM customerDetails WHERE Email = '{$email}' LIMIT 1";
+			#$query = "SELECT Email FROM customerDetails WHERE Email = '{$email}' AND Password = '$hashedPassword' LIMIT 1";
 
 			$result = mysqli_query($connection,$query);
 

@@ -11,6 +11,7 @@ $dbhost = 'localhost';
 
     $connection = mysqli_connect('localhost', 'root', '', 'onlineshoestore');
     $shoeList = '';
+
     if(isset($_POST['findItembySizeButton']))
     {
         $shoeSize = mysqli_real_escape_string($connection,$_POST['shoeSize']);
@@ -75,6 +76,21 @@ $dbhost = 'localhost';
 </div>
 
 <main>
+    <style>
+        header{
+            font-family: "times new roman";
+            text-align: center;
+        },
+        table{
+            font-family: "times new roman";
+            text-align: center;
+
+        },
+        tr,td{
+            font-family: "times new roman";
+            text-align: center;
+        }
+    </style>
     <table class="masterlist">
         <tr>
             <th>Product ID </th>
@@ -83,6 +99,13 @@ $dbhost = 'localhost';
         </tr>
         <?php echo $shoeList; ?>
     </table>
+    <table>
+        <tr> 
+            <th>Type</th> 
+            <th><input type="text" placeholder="Cash on delivery / Pay Online" name="customerpayment"></th>
+        </tr>
+    </table>
+    <button type="submit" name="addCartButton">Add to Cart</button>
 </main>
 </body>
 </html>
