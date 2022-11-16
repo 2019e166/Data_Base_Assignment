@@ -112,3 +112,6 @@ tr,td: nth-child(2)
 </div>
 </center>
 </html>
+<?php
+require_once 'inc/footer.php';
+?>

@@ -9,8 +9,11 @@ require_once 'inc/connection.php';
 	}
 	form{
 		font-family: "times new roman";
-		background-color: #76ff7a;
+/*        background-color: #76ff7a;*/
 	}
+	/*button{
+		background-color: brown;
+	}*/
 	
 </style>
 <head>
@@ -47,6 +50,7 @@ require_once 'inc/connection.php';
 				<button type="submit" formaction="index.php">Home</button>
 				<button type="submit" formaction="loginHome.php">Login</button>
 				<button type="submit" formaction="registerHome.php">Register</button>
+				<!-- <button type="submit" formaction="registerHome.php">Register</button> -->
 			</center>
 		</form>
 	</div>

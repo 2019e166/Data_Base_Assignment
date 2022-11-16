@@ -55,6 +55,9 @@ require_once('inc/connection.php'); ?>
 		<form action="readDetails.php" method="submit">
 			<button type="submit">Read Account</button>
 		</form>
+		<form action="showOrders.php" method="submit">
+			<button type="submit">Show My Order</button>
+		</form>
 		<p> Back to Home page.<a href="index.php"> Back </a></p>
 		<p> Back to Register page.<a href="registerHome.php"> Back </a></p>
 		<p> Back to Login page.<a href="loginHome.php"> Back </a></p>

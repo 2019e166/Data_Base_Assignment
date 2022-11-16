@@ -32,9 +32,10 @@ $dbhost = 'localhost';
             while ($userrec = mysqli_fetch_assoc($result)) {
                 $shoeList .= "<tr>";
                 $shoeList .= "<td>{$userrec['ProductID']}</td>";
-                $_SESSION['productid'] = $userrec['ProductID'];  ####
+                $_SESSION['productid'] = $userrec['ProductID'];
                 $shoeList .= "<td>{$userrec['Price']}</td>";
                 $shoeList .= "<td>{$userrec['Description']}</td>";
+                #$shoeList .= "<td>{$userrec['Images']}</td>";
                 $shoeList .= "</tr>";
             }
          }
@@ -50,7 +51,6 @@ $dbhost = 'localhost';
         $result = mysqli_query($connection,$querySelect);
 
     }
-
     #NEWW
 
 
@@ -63,7 +63,7 @@ $dbhost = 'localhost';
         $payType = mysqli_real_escape_string($connection,$_POST['customerpayment']);
         $productID = $userrec['ProductID'];
         date_default_timezone_set('Asia/Kolkata');
-        $date = date('d-m-y h:i:s'); 
+        $date = date('d-m-y'); 
         $description = $userrec['Description'];
         $cutomerEmail = $_SESSION['loggedCustomerEmail'];
         $queryGetID = "SELECT CustomerID FROM customerDetails WHERE Email = '$cutomerEmail' LIMIT 1";
@@ -127,6 +127,7 @@ $dbhost = 'localhost';
             <th>Product ID </th>
             <th>Price </th>
             <th>Description</th>
+            <th>Image</th>
         </tr>
         <?php echo $shoeList; ?>
     </table>
@@ -140,9 +141,13 @@ $dbhost = 'localhost';
     
     <button type="submit" name="addCartButton">Add to Cart</button>
 
-    <button type="submit" name="showmyCartButton">Show my Cart</button>
+    <button type="submit" name="showmyCartButton" formaction="showOrders.php">Show my Cart</button>
 </form>
 </main>
+<p> Back to Login Selection Page. <a href="loginSelectionPage.php"> Back </a></p>
+<p> Back to Home page.<a href="index.php"> Back </a></p>
+        <p> Back to Register page.<a href="registerHome.php"> Back </a></p>
+        <p> Back to Login page.<a href="loginHome.php"> Back </a></p>
 </body>
 </html>
 <?php
